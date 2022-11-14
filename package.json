@@ -1,0 +1,25 @@
+{
+  "name": "bims-frontend",
+  "version": "1.0.0",
+  "description": "bims front end application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EXSAE-Technologies/bims-frontend.git"
+  },
+  "keywords": [
+    "bims"
+  ],
+  "author": "EXSAE Technologies",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EXSAE-Technologies/bims-frontend/issues"
+  },
+  "homepage": "https://github.com/EXSAE-Technologies/bims-frontend#readme",
+  "devDependencies": {
+    "electron": "^21.2.3"
+  }
+}
