@@ -24,7 +24,19 @@ let matches = [
         awayOdds:1.01
     }
 ]
-
+/*
+var myMatches = []
+fetch("https://app.sportdataapi.com/api/v1/soccer/odds/120423?type=prematch",{
+    method:"GET",
+    headers: {
+        "apikey":"66699ec0-673c-11ed-8ab6-57882caea9ab"
+    }
+}).then(response=>response.json()).then(result=>{
+    console.log(result.data["1X2, Full Time Result"]["bookmakers"][0]["odds_data"])
+}).catch(error=>{
+    console.log(error)
+})
+*/
 var tbody = document.querySelector("#matchesBody")
 
 matches.forEach((item)=>{
@@ -71,18 +83,17 @@ var ticket = []
 document.querySelectorAll(".odds").forEach((item)=>{
     item.addEventListener("click",(event)=>{
         var bet = {
-            id:event.target.getAttribute("data-odd-id"),
+            matchid:event.target.getAttribute("data-odd-id"),
             name:event.target.getAttribute("data-odd-name"),
             odds:event.target.innerText
         }
         var filteredTicket = ticket.filter((ticketItem,index,t)=>{
-            return ticketItem.id != bet.id
+            return ticketItem.matchid != bet.matchid
         })
         filteredTicket.push(bet)
         ticket = filteredTicket
-        console.log(ticket)
 
-        var betOdds = document.querySelectorAll(".odds[data-odd-id='"+bet.id+"']")
+        var betOdds = document.querySelectorAll(".odds[data-odd-id='"+bet.matchid+"']")
         betOdds.forEach((betOdd)=>{
             if(betOdd.getAttribute("data-odd-name")==bet.name){
                 betOdd.classList.add("text-bg-secondary")
@@ -94,5 +105,19 @@ document.querySelectorAll(".odds").forEach((item)=>{
 })
 
 function createTicket() {
-    //
+    var wager = document.querySelector("#wager").value
+    fetch("http://localhost:8000/api/",{
+        method:"POST",
+        headers: {
+            "Content-Type":"application/json",
+        },
+        body: JSON.stringify({
+            wager:wager,
+            bets:ticket
+        })
+    }).then((response)=>response.json()).then((data)=>{
+        alert(JSON.stringify(data))
+    }).catch((error)=>{
+        alert("Error: "+JSON.stringify(error))
+    })
 }
