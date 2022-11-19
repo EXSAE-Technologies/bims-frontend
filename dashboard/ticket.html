@@ -175,47 +175,53 @@
           </div>
         </div>
       </div>
-      <div class="table-responsive">
-        <table class="table table-sm">
-          <thead>
-            <tr>
-              <th scope="col">#ID</th>
-              <th scope="col" id="ticketId">-</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Wager</th>
-              <td id="wager">-</td>
-            </tr>
-            <tr>
-              <th>Bet Type</th>
-              <td id="bet_type">-</td>
-            </tr>
-            <tr>
-              <th>Odds</th>
-              <td id="odds">-</td>
-            </tr>
-            <tr>
-              <th>Profit</th>
-              <td id="profit">-</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table-responsive">
-        <table class="table table-sm">
-          <thead>
-            <tr>
-              <th scope="col">#ID</th>
-              <th scope="col">Match ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Odds</th>
-            </tr>
-          </thead>
-          <tbody id="ticketBody">
-          </tbody>
-        </table>
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Reference ID</th>
+                  <th scope="col" id="ticketId" class="text-end">-</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Bet Type</th>
+                  <td id="bet_type" class="text-end">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">#ID</th>
+                  <th scope="col">Match ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col" class="text-end">Odds</th>
+                </tr>
+              </thead>
+              <tbody id="ticketBody">
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <tbody>
+                <tr>
+                  <th>Wager</th>
+                  <td id="wager" class="text-end">-</td>
+                </tr>
+                <tr>
+                  <th>Profit</th>
+                  <td id="profit" class="text-end">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </main>
   </div>

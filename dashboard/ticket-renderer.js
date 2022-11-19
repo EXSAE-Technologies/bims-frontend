@@ -20,7 +20,6 @@ function renderTicket(){
     setData("#ticketId",ticket.id)
     setData("#wager",ticket.wager)
     setData("#bet_type",ticket.bet_type)
-    setData("#odds",ticket.odds)
     setData("#profit",ticket.profit)
     var tbody = document.querySelector("#ticketBody")
 
@@ -41,10 +40,25 @@ function renderTicket(){
 
         var tdOdds = document.createElement("td")
         tdOdds.innerText = item.odds
+        tdOdds.classList.add("text-end")
         tr.appendChild(tdOdds)
 
         tbody.appendChild(tr)
     });
+
+    var tr = document.createElement("tr")
+
+    var tdTotal = document.createElement("td")
+    tdTotal.innerText = "Total"
+    tdTotal.setAttribute("colspan","3")
+    tr.appendChild(tdTotal)
+
+    var tdTotalOdds = document.createElement("td")
+    tdTotalOdds.innerText = ticket.odds
+    tdTotalOdds.classList.add("text-end")
+    tr.appendChild(tdTotalOdds)
+
+    tbody.appendChild(tr)
 
 }
 
