@@ -3,7 +3,7 @@ var wrapper = betapi.apiWrapper()
         document.querySelector("#loginButton").addEventListener("click",()=>{
             document.querySelector("#loginButton").innerHTML="Logging in..."
             document.querySelector("#loginButton").setAttribute("disabled","true")
-            fetch("http://server.iitsar.com:8000/api-token-auth/",{
+            fetch(wrapper.tokenUrl,{
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
