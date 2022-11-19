@@ -1,3 +1,5 @@
+var wrapper = betapi.apiWrapper()
+
 let matches = [
     {
         id:12,
@@ -106,7 +108,7 @@ document.querySelectorAll(".odds").forEach((item)=>{
 
 function createTicket() {
     var wager = document.querySelector("#wager").value
-    fetch("http://localhost:8000/api/",{
+    fetch(wrapper.apiBaseUrl,{
         method:"POST",
         headers: {
             "Content-Type":"application/json",

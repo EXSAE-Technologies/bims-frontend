@@ -11,7 +11,7 @@ const APIWrapper = {
               "Content-Type":"application/json",
           },
       }
-      fetch(`http:localhost:8000/api${endPoint}`,{
+      fetch(`${apiBaseUrl}${endPoint}`,{
           ...defaultInit,
           ...init
       }).then((response)=>response.json()).then((data)=>{
