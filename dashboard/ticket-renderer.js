@@ -1,10 +1,9 @@
-var urlParams = new URLSearchParams(location.search)
-console.log(urlParams)
+var ticketId = localStorage.getItem("viewTicket")
 
 var wrapper = betapi.apiWrapper()
 
 var ticket = {}
-wrapper.send("/id/7",{
+wrapper.send(`/id/${ticketId}`,{
     method:"GET"
 },(data)=>{
     ticket = data
@@ -21,6 +20,7 @@ function renderTicket(){
     setData("#ticketId",ticket.id)
     setData("#wager",ticket.wager)
     setData("#bet_type",ticket.bet_type)
+    setData("#odds",ticket.odds)
     setData("#profit",ticket.profit)
     var tbody = document.querySelector("#ticketBody")
 
@@ -46,4 +46,8 @@ function renderTicket(){
         tbody.appendChild(tr)
     });
 
+}
+
+function printTicket(){
+    print()
 }

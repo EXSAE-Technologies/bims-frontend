@@ -36,11 +36,15 @@ function renderTickets(){
         tdProfit.innerText = item.profit
         tr.appendChild(tdProfit)
 
-        var tdView = document.createElement("a")
-        tdView.innerText = "View"
-        tdView.setAttribute("href",`ticket.html?id=${item.id}`)
+        var tdActions = document.createElement("td")
+        var tdView = document.createElement("button")
+        tdView.onclick = ()=>{
+            betapi.viewTicket(item.id)
+        }
         tdView.classList.add("btn","btn-outline-primary")
-        tr.appendChild(tdView)
+        tdView.innerText = "View"
+        tdActions.appendChild(tdView)
+        tr.appendChild(tdActions)
 
         tbody.appendChild(tr)
     });

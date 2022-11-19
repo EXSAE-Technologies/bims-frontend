@@ -24,4 +24,8 @@ const APIWrapper = {
 
 contextBridge.exposeInMainWorld('betapi', {
   apiWrapper: ()=> APIWrapper,
+  viewTicket: (id)=>{
+    localStorage.setItem("viewTicket",id)
+    location.assign("ticket.html")
+  },
 });
