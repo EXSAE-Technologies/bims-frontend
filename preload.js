@@ -1,7 +1,8 @@
 const { contextBridge } = require('electron');
 
+const apiBaseUrl = "http://server.iitsar.com:8000/api"
 const APIWrapper = {
-  apiBaseUrl:"http:localhost:8000/api",
+  apiBaseUrl:apiBaseUrl,
 
   send: (endPoint,init,onResult,onError) => {
       var defaultInit = {
