@@ -108,7 +108,7 @@ document.querySelectorAll(".odds").forEach((item)=>{
 
 function createTicket() {
     var wager = document.querySelector("#wager").value
-    fetch(wrapper.apiBaseUrl,{
+    fetch(wrapper.apiBaseUrl+"/",{
         method:"POST",
         headers: {
             "Content-Type":"application/json",
