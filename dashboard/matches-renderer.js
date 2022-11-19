@@ -1,4 +1,36 @@
 var wrapper = betapi.apiWrapper()
+var leagues =[237,314]
+
+leagues.forEach((league)=>{
+    fetch(`https://app.sportdataapi.com/api/v1/soccer/seasons?league_id=${league}`,{
+        method:"GET",
+        headers: {
+            "Content-Type":"application/json",
+            "apikey":"66699ec0-673c-11ed-8ab6-57882caea9ab"
+        },
+    }).then((response)=>response.json()).then((data)=>{
+        //console.log(data.data[data.data.length-1])
+        get_matches(data.data[data.data.length-1].season_id)
+    }).catch((error)=>{
+        alert("Error: "+JSON.stringify(error))
+    })
+})
+
+function get_matches(season_id) {
+    fetch(`https://app.sportdataapi.com/api/v1/soccer/matches?season_id=${season_id}`,{
+        method:"GET",
+        headers: {
+            "Content-Type":"application/json",
+            "apikey":"66699ec0-673c-11ed-8ab6-57882caea9ab"
+        },
+    }).then((response)=>response.json()).then((data)=>{
+        console.log(data)
+        //get_matches(data.data[data.data.length-1])
+    }).catch((error)=>{
+        alert("Error: "+JSON.stringify(error))
+    })
+    fetch("")
+}
 
 let matches = [
     {
@@ -128,3 +160,4 @@ function createTicket() {
         alert("Error: "+JSON.stringify(error))
     })
 }
+get_league()
