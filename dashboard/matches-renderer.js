@@ -108,6 +108,10 @@ document.querySelectorAll(".odds").forEach((item)=>{
 
 function createTicket() {
     var wager = document.querySelector("#wager").value
+    if(wager === ""){
+        alert("Enter wager.")
+        return null
+    }
     fetch(wrapper.apiBaseUrl+"/",{
         method:"POST",
         headers: {
@@ -118,7 +122,8 @@ function createTicket() {
             bets:ticket
         })
     }).then((response)=>response.json()).then((data)=>{
-        alert(JSON.stringify(data))
+        //alert(JSON.stringify(data))
+        betapi.viewTicket(data.data.id)
     }).catch((error)=>{
         alert("Error: "+JSON.stringify(error))
     })
