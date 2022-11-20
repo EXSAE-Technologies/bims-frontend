@@ -1,6 +1,8 @@
 var wrapper = betapi.apiWrapper()
 var leagues =[237,314]
 
+var tbody = document.querySelector("#matchesBody")
+
 leagues.forEach((league)=>{
     fetch(`https://app.sportdataapi.com/api/v1/soccer/seasons?league_id=${league}`,{
         method:"GET",
@@ -17,21 +19,67 @@ leagues.forEach((league)=>{
 })
 
 function get_matches(season_id) {
-    fetch(`https://app.sportdataapi.com/api/v1/soccer/matches?season_id=${season_id}`,{
+    fetch(`https://app.sportdataapi.com/api/v1/soccer/matches?season_id=${season_id}&date_from=2022-11-20`,{
         method:"GET",
         headers: {
             "Content-Type":"application/json",
             "apikey":"66699ec0-673c-11ed-8ab6-57882caea9ab"
         },
     }).then((response)=>response.json()).then((data)=>{
-        console.log(data)
-        //get_matches(data.data[data.data.length-1])
+        //console.log(data)
+        renderMatches(data.data)
     }).catch((error)=>{
         alert("Error: "+JSON.stringify(error))
     })
-    fetch("")
 }
 
+function get_odds(match_id) {
+    var n = (Math.random()*3)+0.01
+    return n.toFixed(2)
+}
+
+function renderMatches(matchList=[]){
+    for(var i=0;i<5;i++){
+        get_odds(matchList[i].match_id)
+        var tr = document.createElement("tr")
+        
+        var tdId = document.createElement("td")
+        tdId.innerText = matchList[i].match_id
+        tr.appendChild(tdId)
+    
+        var tdHome = document.createElement("td")
+        tdHome.innerText = matchList[i].home_team.name
+        tr.appendChild(tdHome)
+    
+        var tdAway = document.createElement("td")
+        tdAway.innerText = matchList[i].away_team.name
+        tr.appendChild(tdAway)
+    
+        var tdHomeOdds = document.createElement("td")
+        tdHomeOdds.setAttribute("data-odd-id",matchList[i].match_id)
+        tdHomeOdds.setAttribute("data-odd-name","home")
+        tdHomeOdds.classList.add("odds")
+        tdHomeOdds.innerText = get_odds(matchList[i].match_id)
+        tr.appendChild(tdHomeOdds)
+    
+        var tdDrawOdds = document.createElement("td")
+        tdDrawOdds.setAttribute("data-odd-id",matchList[i].match_id)
+        tdDrawOdds.setAttribute("data-odd-name","draw")
+        tdDrawOdds.classList.add("odds")
+        tdDrawOdds.innerText = get_odds(matchList[i].match_id)
+        tr.appendChild(tdDrawOdds)
+    
+        var tdAwayOdds = document.createElement("td")
+        tdAwayOdds.setAttribute("data-odd-id",matchList[i].match_id)
+        tdAwayOdds.setAttribute("data-odd-name","away")
+        tdAwayOdds.classList.add("odds")
+        tdAwayOdds.innerText = get_odds(matchList[i].match_id)
+        tr.appendChild(tdAwayOdds)
+    
+        tbody.appendChild(tr)
+    }
+}
+/*
 let matches = [
     {
         id:12,
@@ -58,7 +106,7 @@ let matches = [
         awayOdds:1.01
     }
 ]
-/*
+
 var myMatches = []
 fetch("https://app.sportdataapi.com/api/v1/soccer/odds/120423?type=prematch",{
     method:"GET",
@@ -70,8 +118,7 @@ fetch("https://app.sportdataapi.com/api/v1/soccer/odds/120423?type=prematch",{
 }).catch(error=>{
     console.log(error)
 })
-*/
-var tbody = document.querySelector("#matchesBody")
+
 
 matches.forEach((item)=>{
     var tr = document.createElement("tr")
@@ -111,7 +158,7 @@ matches.forEach((item)=>{
 
     tbody.appendChild(tr)
 })
-
+*/
 var ticket = []
 
 document.querySelectorAll(".odds").forEach((item)=>{
@@ -160,4 +207,3 @@ function createTicket() {
         alert("Error: "+JSON.stringify(error))
     })
 }
-get_league()
